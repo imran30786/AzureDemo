@@ -1,0 +1,126 @@
+{
+	"name": "Assignment_3_Email",
+	"properties": {
+		"activities": [
+			{
+				"name": "Copy data1",
+				"type": "Copy",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "DelimitedTextSource",
+						"storeSettings": {
+							"type": "AzureBlobFSReadSettings",
+							"recursive": true,
+							"enablePartitionDiscovery": false
+						},
+						"formatSettings": {
+							"type": "DelimitedTextReadSettings"
+						}
+					},
+					"sink": {
+						"type": "DelimitedTextSink",
+						"storeSettings": {
+							"type": "AzureBlobFSWriteSettings"
+						},
+						"formatSettings": {
+							"type": "DelimitedTextWriteSettings",
+							"quoteAllText": true,
+							"fileExtension": ".txt"
+						}
+					},
+					"enableStaging": false,
+					"translator": {
+						"type": "TabularTranslator",
+						"typeConversion": true,
+						"typeConversionSettings": {
+							"allowDataTruncation": true,
+							"treatBooleanAsNumber": false
+						}
+					}
+				},
+				"inputs": [
+					{
+						"referenceName": "Ds_input_copy",
+						"type": "DatasetReference"
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "Ds_ouput_Copy",
+						"type": "DatasetReference"
+					}
+				]
+			},
+			{
+				"name": "When PipeLine Failed",
+				"type": "WebActivity",
+				"dependsOn": [
+					{
+						"activity": "Copy data1",
+						"dependencyConditions": [
+							"Failed"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"url": "https://prod-21.centralindia.logic.azure.com:443/workflows/922a1dd56bf94f6a98acce7121af26e6/triggers/manual/paths/invoke?api-version=2016-10-01&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=BH-10Kzs5xFr4Q11hhwZf7iaHT2qhttWHQSd612Pytw",
+					"method": "POST",
+					"body": {
+						"AdfName": "df-AssignmentPractical",
+						"PipelineName": "Assignment_3_Email",
+						"Status": "Failed"
+					}
+				}
+			},
+			{
+				"name": "When Pipeline Success",
+				"type": "WebActivity",
+				"dependsOn": [
+					{
+						"activity": "Copy data1",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"url": "https://prod-21.centralindia.logic.azure.com:443/workflows/922a1dd56bf94f6a98acce7121af26e6/triggers/manual/paths/invoke?api-version=2016-10-01&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=BH-10Kzs5xFr4Q11hhwZf7iaHT2qhttWHQSd612Pytw",
+					"method": "POST",
+					"body": {
+						"AdfName": "df-AssignmentPractical",
+						"PipelineName": "Assignment_3_Email",
+						"Status": "Success"
+					}
+				}
+			}
+		],
+		"annotations": [],
+		"lastPublishTime": "2023-03-19T18:46:05Z"
+	},
+	"type": "Microsoft.DataFactory/factories/pipelines"
+}

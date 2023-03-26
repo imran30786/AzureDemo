@@ -1,0 +1,55 @@
+{
+	"name": "Replace_Null",
+	"properties": {
+		"type": "MappingDataFlow",
+		"typeProperties": {
+			"sources": [
+				{
+					"dataset": {
+						"referenceName": "Ds_Emp_Input",
+						"type": "DatasetReference"
+					},
+					"name": "Employee"
+				}
+			],
+			"sinks": [
+				{
+					"dataset": {
+						"referenceName": "Ds_ouput_Copy",
+						"type": "DatasetReference"
+					},
+					"name": "LoadFile",
+					"rejectedDataLinkedService": {
+						"referenceName": "LS_AdlsGen2",
+						"type": "LinkedServiceReference"
+					}
+				}
+			],
+			"transformations": [
+				{
+					"name": "ReplaceNullWithValue"
+				}
+			],
+			"scriptLines": [
+				"source(output(",
+				"          Name as string,",
+				"          Job as string,",
+				"          salary as string",
+				"     ),",
+				"     allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     ignoreNoFilesFound: false) ~> Employee",
+				"Employee derive(salary = iif(isNull(toInteger(salary)),0,toInteger(salary))) ~> ReplaceNullWithValue",
+				"ReplaceNullWithValue sink(allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     partitionFileNames:['replaceNull'],",
+				"     umask: 0022,",
+				"     preCommands: [],",
+				"     postCommands: [],",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true,",
+				"     partitionBy('hash', 1)) ~> LoadFile"
+			]
+		}
+	}
+}

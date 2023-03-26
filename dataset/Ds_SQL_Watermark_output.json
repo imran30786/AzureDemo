@@ -1,0 +1,33 @@
+{
+	"name": "Ds_SQL_Watermark_output",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "LS_SQl",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [
+			{
+				"name": "PersonID",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "Name",
+				"type": "varchar"
+			},
+			{
+				"name": "LastModifytime",
+				"type": "datetime",
+				"precision": 23,
+				"scale": 3
+			}
+		],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "emp_source_table"
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

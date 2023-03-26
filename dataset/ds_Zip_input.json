@@ -1,0 +1,24 @@
+{
+	"name": "ds_Zip_input",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "LS_AdlsGen2",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "Binary",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileName": "flights.zip",
+				"folderPath": "Day15",
+				"fileSystem": "input"
+			},
+			"compression": {
+				"type": "ZipDeflate",
+				"level": "Optimal"
+			}
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

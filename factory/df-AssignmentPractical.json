@@ -1,0 +1,9 @@
+{
+	"name": "df-AssignmentPractical",
+	"location": "centralindia",
+	"identity": {
+		"type": "SystemAssigned",
+		"principalId": "e709858c-2e32-46da-b1c5-ee82a8769c08",
+		"tenantId": "69088cff-acd7-4b75-a238-a29978b57b37"
+	}
+}

@@ -1,0 +1,19 @@
+{
+	"name": "ds_unzip_output",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "LS_AdlsGen2",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "Binary",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"folderPath": "Unzip",
+				"fileSystem": "output"
+			}
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

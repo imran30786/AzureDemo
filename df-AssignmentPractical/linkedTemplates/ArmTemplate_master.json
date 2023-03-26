@@ -11,6 +11,10 @@
 			"type": "secureString",
 			"metadata": "Secure string for 'accountKey' of 'LS_AdlsGen2'"
 		},
+		"LS_Git_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'LS_Git'"
+		},
 		"LS_SQl_connectionString": {
 			"type": "secureString",
 			"metadata": "Secure string for 'connectionString' of 'LS_SQl'"
@@ -48,6 +52,9 @@
 					},
 					"LS_AdlsGen2_accountKey": {
 						"value": "[parameters('LS_AdlsGen2_accountKey')]"
+					},
+					"LS_Git_connectionString": {
+						"value": "[parameters('LS_Git_connectionString')]"
 					},
 					"LS_SQl_connectionString": {
 						"value": "[parameters('LS_SQl_connectionString')]"

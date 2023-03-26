@@ -8,6 +8,9 @@
 		"LS_AdlsGen2_accountKey": {
 			"value": ""
 		},
+		"LS_Git_connectionString": {
+			"value": ""
+		},
 		"LS_SQl_connectionString": {
 			"value": ""
 		},

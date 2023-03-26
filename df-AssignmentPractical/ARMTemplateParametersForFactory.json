@@ -1,0 +1,18 @@
+{
+	"$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+	"contentVersion": "1.0.0.0",
+	"parameters": {
+		"factoryName": {
+			"value": "df-AssignmentPractical"
+		},
+		"LS_AdlsGen2_accountKey": {
+			"value": ""
+		},
+		"LS_SQl_connectionString": {
+			"value": ""
+		},
+		"LS_AdlsGen2_properties_typeProperties_url": {
+			"value": "https://stgmissionimran.dfs.core.windows.net/"
+		}
+	}
+}
